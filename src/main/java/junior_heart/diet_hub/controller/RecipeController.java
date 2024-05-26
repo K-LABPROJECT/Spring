@@ -1,8 +1,8 @@
 package junior_heart.diet_hub.controller;
 
-import junior_heart.diet_hub.controller.dto.MemberSignRequest;
-import junior_heart.diet_hub.service.MemberService;
-import junior_heart.diet_hub.service.dto.MemberSignResponse;
+import junior_heart.diet_hub.controller.dto.RecipeSignRequest;
+import junior_heart.diet_hub.service.RecipeService;
+import junior_heart.diet_hub.service.dto.RecipeSignResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
