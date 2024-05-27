@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@Tag(name = "Recipes", description = "레시")
+@Tag(name = "Recipes", description = "레시피")
 @RestController
 @RequestMapping("/api/restaurants/{restaurantId}/recipes")
 public class RecipeController {
