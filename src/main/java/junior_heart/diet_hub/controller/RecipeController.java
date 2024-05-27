@@ -2,7 +2,6 @@ package junior_heart.diet_hub.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import junior_heart.diet_hub.controller.dto.RecipeFindRequest;
 import junior_heart.diet_hub.controller.dto.RecipeRegisterRequest;
 import junior_heart.diet_hub.service.RecipeService;
 import junior_heart.diet_hub.service.dto.RecipeFindResponse;
@@ -34,9 +33,9 @@ public class RecipeController {
     }
 
     @Operation(summary = "레시피 조회")
-    @GetMapping
-    public ResponseEntity<RecipeFindResponse> findRecipe(@PathVariable Long restaurantId, @RequestBody RecipeFindRequest request) {
-        RecipeFindResponse response = recipeService.findRecipe(request.recipeId());
+    @GetMapping("/{recipeId}")
+    public ResponseEntity<RecipeFindResponse> findRecipe(@PathVariable Long restaurantId, @PathVariable Long recipeId) {
+        RecipeFindResponse response = recipeService.findRecipe(recipeId);
         return ResponseEntity.ok(response);
     }
 }
