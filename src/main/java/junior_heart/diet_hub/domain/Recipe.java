@@ -17,27 +17,28 @@ public class Recipe {
     private Long id;
 
     @Column(name = "recipe_name")
-    private String recipename;
+    private String recipeName;
 
     @Column(name = "recipe_detail")
-    private String recipedetail;
+    private String recipeDetail;
     public Recipe() {
     }
 
-    public Recipe(String recipe_name, String recipe_detail) {
-        validateRecipename(recipe_name);
-        validateRecipedetail(recipe_detail);
-        this.recipename = recipe_name;
+    public Recipe(String recipeName, String recipeDetail) {
+        validateRecipename(recipeName);
+        validateRecipedetail(recipeDetail);
+        this.recipeName = recipeName;
+        this.recipeDetail = recipeDetail;
     }
 
-    private void validateRecipename(String recipename) {
-        if (recipename.isBlank()) {
+    private void validateRecipename(String recipeName) {
+        if (recipeName.isBlank()) {
             throw new IllegalArgumentException("레시피 이름은 공백일 수 없습니다.");
         }
     }
 
-    private void validateRecipedetail(String recipedetail) {
-        if (recipendetail.isBlank()) {
+    private void validateRecipedetail(String recipeDetail) {
+        if (recipeDetail.isBlank()) {
             throw new IllegalArgumentException("레시피 내용은 공백일 수 없습니다.");
         }
     }
@@ -46,11 +47,11 @@ public class Recipe {
         return id;
     }
 
-    public String getRecipename() {
-        return recipename;
+    public String getRecipeName() {
+        return recipeName;
     }
 
-    public String getRecipedetail() {
-        return recipedetail;
+    public String getRecipeDetail() {
+        return recipeDetail;
     }
 }
