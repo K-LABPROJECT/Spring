@@ -1,24 +1,19 @@
 spring:
   application:
-    name: diet_hub
+    name: strange
   datasource:
-    driver-class-name: org.h2.Driver # RDS ? ??? ?
-    url: jdbc:h2:tcp://localhost/~/test # RDS ? ??? ?
-    username: sa
-  h2:
-    console:
-      enabled: true
-      settings:
-        web-allow-others: true
-
-jpa:
-  hibernate:
-    ddl-auto: create-drop
-  open-in-view: false
-  properties:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${RDS_URL}
+    username: ${RDS_USERNAME}
+    password: ${RDS_PASSWORD}
+  jpa:
     hibernate:
-      create_empty_composites:
-        enabled: true
-      format_sql: true
-      default_batch_fetch_size: 100
-      dialect: org.hibernate.dialect.MySQLDialect
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        create_empty_composites:
+          enabled: true
+        format_sql: true
+        default_batch_fetch_size: 100
+        dialect: org.hibernate.dialect.MySQLDialect
