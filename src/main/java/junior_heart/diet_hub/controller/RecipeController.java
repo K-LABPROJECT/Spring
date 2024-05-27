@@ -7,6 +7,7 @@ import junior_heart.diet_hub.service.dto.RecipeFindResponse;
 import junior_heart.diet_hub.service.dto.RecipeRegisterResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,13 +24,13 @@ public class RecipeController {
     }
 
     @PostMapping
-    public ResponseEntity<RecipeRegisterResponse> Register(@RequestBody RecipeRegisterRequest request) {
-        RecipeRegisterResponse response = recipeService.register(request.recipeName(), request.recipeDetail());
+    public ResponseEntity<RecipeRegisterResponse> Register(@PathVariable Long restaurantId, @RequestBody RecipeRegisterRequest request) {
+        RecipeRegisterResponse response = recipeService.register(request.recipeName(), request.recipeDetail(), restaurantId);
         return ResponseEntity.ok(response);
     }
 
     @GetMapping
-    public ResponseEntity<RecipeFindResponse> findRecipe(@RequestBody RecipeFindRequest request) {
+    public ResponseEntity<RecipeFindResponse> findRecipe(@PathVariable Long restaurantId, @RequestBody RecipeFindRequest request) {
         RecipeFindResponse response = recipeService.findRecipe(request.recipeId());
         return ResponseEntity.ok(response);
     }

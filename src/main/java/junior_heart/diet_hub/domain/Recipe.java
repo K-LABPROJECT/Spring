@@ -21,14 +21,23 @@ public class Recipe {
 
     @Column(name = "recipe_detail")
     private String recipeDetail;
+
+    @Column(name = "restaurant_id")
+    private Long restaurantId;
+
     public Recipe() {
     }
 
     public Recipe(String recipeName, String recipeDetail) {
+        this(recipeName, recipeDetail, null);
+    }
+
+    public Recipe(String recipeName, String recipeDetail, Long restaurantId) {
         validateRecipename(recipeName);
         validateRecipedetail(recipeDetail);
         this.recipeName = recipeName;
         this.recipeDetail = recipeDetail;
+        this.restaurantId = restaurantId;
     }
 
     private void validateRecipename(String recipeName) {

@@ -17,8 +17,8 @@ public class RecipeService {
     }
 
     @Transactional
-    public RecipeRegisterResponse register(String recipeName, String recipeDetail) {
-        Recipe recipe = recipeRepository.save(new Recipe(recipeName, recipeDetail));
+    public RecipeRegisterResponse register(String recipeName, String recipeDetail, Long restaurantId) {
+        Recipe recipe = recipeRepository.save(new Recipe(recipeName, recipeDetail, restaurantId));
         return new RecipeRegisterResponse(recipe.getId());
     }
 
