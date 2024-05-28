@@ -41,7 +41,7 @@ public class RestaurantService {
 
     @Transactional(readOnly = true)
     public RestaurantSearchResponse search(String title) {
-        Restaurant restaurant = restaurantRepository.findByTitle(title)
+        Restaurant restaurant = restaurantRepository.findByTitleContaining(title)
                                                     .orElseThrow(() -> new IllegalArgumentException(
                                                             "해당 레스토랑 이름을 가진 레스토랑이 존재하지 않습니다. restaurant title={}" + title));
         return new RestaurantSearchResponse(restaurant.getId());
