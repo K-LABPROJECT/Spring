@@ -60,4 +60,20 @@ public class Member {
     public String getUsername() {
         return username;
     }
+
+    public Double getHeight() {
+        return height;
+    }
+
+    public Double getWeight() {
+        return weight;
+    }
+
+    public Double getMuscleMass() {
+        return muscleMass;
+    }
+
+    public Double getWeightLoss() {
+        return weightLoss;
+    }
 }
