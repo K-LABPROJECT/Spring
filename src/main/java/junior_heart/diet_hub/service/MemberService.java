@@ -1,5 +1,6 @@
 package junior_heart.diet_hub.service;
 
+import junior_heart.diet_hub.controller.dto.MemberSignRequest;
 import junior_heart.diet_hub.domain.Member;
 import junior_heart.diet_hub.domain.Restaurant;
 import junior_heart.diet_hub.repository.MemberRepository;
@@ -20,9 +21,15 @@ public class MemberService {
     }
 
     @Transactional
-    public MemberSignResponse signUp(String username) {
-        Member member = memberRepository.save(new Member(username));
-        restaurantRepository.save(new Restaurant("temporaryTitle", member.getId()));
+    public MemberSignResponse signUp(MemberSignRequest request) {
+        Member member = memberRepository.save(new Member(
+                request.username(),
+                request.height(),
+                request.weight(),
+                request.muscleMass(),
+                request.weightLoss()
+        ));
+        restaurantRepository.save(new Restaurant(request.username() + "가게", member.getId()));
         return new MemberSignResponse(member.getId());
     }
 }

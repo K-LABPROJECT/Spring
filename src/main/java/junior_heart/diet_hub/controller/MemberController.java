@@ -26,7 +26,7 @@ public class MemberController {
     @Deprecated
     @PostMapping
     public ResponseEntity<MemberSignResponse> signUp(@RequestBody MemberSignRequest request) {
-        MemberSignResponse response = memberService.signUp(request.username());
+        MemberSignResponse response = memberService.signUp(request);
         return ResponseEntity.ok(response);
     }
 }

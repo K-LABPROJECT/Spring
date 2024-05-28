@@ -19,12 +19,32 @@ public class Member {
     @Column(name = "username")
     private String username;
 
+    @Column(name = "height")
+    private Double height;
+
+    @Column(name = "weight")
+    private Double weight;
+
+    @Column(name = "muscle_mass")
+    private Double muscleMass;
+
+    @Column(name = "weight_loss")
+    private Double weightLoss;
+
     public Member() {
     }
 
     public Member(String username) {
+        this(username, null, null, null, null);
+    }
+
+    public Member(String username, Double height, Double weight, Double muscleMass, Double weightLoss) {
         validateName(username);
         this.username = username;
+        this.height = height;
+        this.weight = weight;
+        this.muscleMass = muscleMass;
+        this.weightLoss = weightLoss;
     }
 
     private void validateName(String username) {
