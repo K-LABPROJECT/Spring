@@ -28,4 +28,11 @@ public class RecipeService {
                                         .orElseThrow(() -> new IllegalStateException("해당 id의 레시피가 존재하지 않습니다. recipeId = {}" + recipeId));
         return new RecipeFindResponse(recipe.getId(), recipe.getRecipeName(), recipe.getRecipeDetail());
     }
+
+    @Transactional
+    public void deleteRecipe(Long recipeId) {
+        Recipe recipe = recipeRepository.findById(recipeId)
+                                        .orElseThrow(() -> new IllegalStateException("해당 id의 레시피가 존재하지 않습니다. recipeId = {}" + recipeId));
+        recipeRepository.deleteById(recipe.getId());
+    }
 }

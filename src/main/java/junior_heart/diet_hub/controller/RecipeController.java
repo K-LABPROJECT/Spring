@@ -7,6 +7,7 @@ import junior_heart.diet_hub.service.RecipeService;
 import junior_heart.diet_hub.service.dto.RecipeFindResponse;
 import junior_heart.diet_hub.service.dto.RecipeRegisterResponse;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,5 +38,12 @@ public class RecipeController {
     public ResponseEntity<RecipeFindResponse> findRecipe(@PathVariable Long restaurantId, @PathVariable Long recipeId) {
         RecipeFindResponse response = recipeService.findRecipe(recipeId);
         return ResponseEntity.ok(response);
+    }
+
+    @Operation(summary = "레시피 삭제")
+    @DeleteMapping("/recipeId")
+    public ResponseEntity<Void> deleteRecipe(@PathVariable Long restaurantId, @PathVariable Long recipeId) {
+        recipeService.deleteRecipe(recipeId);
+        return ResponseEntity.noContent().build();
     }
 }
