@@ -37,4 +37,8 @@ public class Restaurant {
     public String getTitle() {
         return title;
     }
+
+    public Long getMemberId() {
+        return memberId;
+    }
 }
