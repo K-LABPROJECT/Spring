@@ -4,7 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import junior_heart.diet_hub.service.RestaurantService;
 import junior_heart.diet_hub.service.dto.RestaurantInfoResponse;
-import junior_heart.diet_hub.service.dto.RestaurantSearchResponse;
+import junior_heart.diet_hub.service.dto.RestaurantSearchResponses;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,8 +32,8 @@ public class RestaurantController {
 
     @Operation(summary = "레스토랑 검색")
     @GetMapping("/search")
-    public ResponseEntity<RestaurantSearchResponse> search(@RequestParam(value = "title") String title) {
-        RestaurantSearchResponse response = restaurantService.search(title);
+    public ResponseEntity<RestaurantSearchResponses> search(@RequestParam(value = "title") String title) {
+        RestaurantSearchResponses response = restaurantService.search(title);
         return ResponseEntity.ok(response);
     }
 }

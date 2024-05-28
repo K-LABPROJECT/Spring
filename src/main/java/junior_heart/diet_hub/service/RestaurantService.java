@@ -1,6 +1,7 @@
 package junior_heart.diet_hub.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import junior_heart.diet_hub.domain.Member;
 import junior_heart.diet_hub.domain.Recipe;
 import junior_heart.diet_hub.domain.Restaurant;
@@ -9,6 +10,7 @@ import junior_heart.diet_hub.repository.RecipeRepository;
 import junior_heart.diet_hub.repository.RestaurantRepository;
 import junior_heart.diet_hub.service.dto.RestaurantInfoResponse;
 import junior_heart.diet_hub.service.dto.RestaurantSearchResponse;
+import junior_heart.diet_hub.service.dto.RestaurantSearchResponses;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,10 +42,11 @@ public class RestaurantService {
     }
 
     @Transactional(readOnly = true)
-    public RestaurantSearchResponse search(String title) {
-        Restaurant restaurant = restaurantRepository.findByTitleContaining(title)
-                                                    .orElseThrow(() -> new IllegalArgumentException(
-                                                            "해당 레스토랑 이름을 가진 레스토랑이 존재하지 않습니다. restaurant title={}" + title));
-        return new RestaurantSearchResponse(restaurant.getId());
+    public RestaurantSearchResponses search(String title) {
+        List<RestaurantSearchResponse> responses = restaurantRepository.findByTitleContaining(title)
+                                                                     .stream()
+                                                                     .map(RestaurantSearchResponse::from)
+                                                                     .collect(Collectors.toList());
+        return new RestaurantSearchResponses(responses);
     }
 }
