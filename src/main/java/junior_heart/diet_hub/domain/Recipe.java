@@ -19,7 +19,7 @@ public class Recipe {
     @Column(name = "recipe_name")
     private String recipeName;
 
-    @Column(name = "recipe_detail")
+    @Column(name = "recipe_detail", length = 3000)
     private String recipeDetail;
 
     @Column(name = "restaurant_id")
