@@ -41,7 +41,7 @@ public class RecipeController {
     }
 
     @Operation(summary = "레시피 삭제")
-    @DeleteMapping("/recipeId")
+    @DeleteMapping("/{recipeId}")
     public ResponseEntity<Void> deleteRecipe(@PathVariable Long restaurantId, @PathVariable Long recipeId) {
         recipeService.deleteRecipe(recipeId);
         return ResponseEntity.noContent().build();
