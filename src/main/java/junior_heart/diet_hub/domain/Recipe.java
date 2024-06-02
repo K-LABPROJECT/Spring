@@ -22,21 +22,26 @@ public class Recipe {
     @Column(name = "recipe_detail", length = 3000)
     private String recipeDetail;
 
+    @Column(name = "recipe_ingredient", length = 1000)
+    private String recipeIngredient;
+
     @Column(name = "restaurant_id")
     private Long restaurantId;
 
     public Recipe() {
     }
 
-    public Recipe(String recipeName, String recipeDetail) {
-        this(recipeName, recipeDetail, null);
+    public Recipe(String recipeName, String recipeDetail, String recipeIngredient) {
+        this(recipeName, recipeDetail, recipeIngredient,null);
     }
 
-    public Recipe(String recipeName, String recipeDetail, Long restaurantId) {
+    public Recipe(String recipeName, String recipeDetail, String recipeIngredient,Long restaurantId) {
         validateRecipename(recipeName);
         validateRecipedetail(recipeDetail);
+        validateRecipeingredient(recipeIngredient);
         this.recipeName = recipeName;
         this.recipeDetail = recipeDetail;
+        this.recipeIngredient = recipeIngredient;
         this.restaurantId = restaurantId;
     }
 
@@ -52,6 +57,12 @@ public class Recipe {
         }
     }
 
+    private void validateRecipeingredient(String recipeingredient) {
+        if(recipeingredient.isBlank()) {
+            throw new IllegalArgumentException("레시피 재료는 공란일 수 없습니다.");
+        }
+    }
+
     public Long getId() {
         return id;
     }
@@ -60,7 +71,10 @@ public class Recipe {
         return recipeName;
     }
 
+    public String getRecipeIngredient() {return recipeIngredient; }
+
     public String getRecipeDetail() {
         return recipeDetail;
     }
+
 }

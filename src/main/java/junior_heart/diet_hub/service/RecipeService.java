@@ -17,8 +17,8 @@ public class RecipeService {
     }
 
     @Transactional
-    public RecipeRegisterResponse register(String recipeName, String recipeDetail, Long restaurantId) {
-        Recipe recipe = recipeRepository.save(new Recipe(recipeName, recipeDetail, restaurantId));
+    public RecipeRegisterResponse register(String recipeName, String recipeDetail, Long restaurantId, String recipeIngredient) {
+        Recipe recipe = recipeRepository.save(new Recipe(recipeName, recipeDetail, recipeIngredient, restaurantId));
         return new RecipeRegisterResponse(recipe.getId());
     }
 
@@ -26,7 +26,7 @@ public class RecipeService {
     public RecipeFindResponse findRecipe(Long recipeId) {
         Recipe recipe = recipeRepository.findById(recipeId)
                                         .orElseThrow(() -> new IllegalStateException("해당 id의 레시피가 존재하지 않습니다. recipeId = {}" + recipeId));
-        return new RecipeFindResponse(recipe.getId(), recipe.getRecipeName(), recipe.getRecipeDetail());
+        return new RecipeFindResponse(recipe.getId(), recipe.getRecipeName(), recipe.getRecipeIngredient(),recipe.getRecipeDetail());
     }
 
     @Transactional
