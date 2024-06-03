@@ -29,7 +29,7 @@ public class RecipeController {
     @Operation(summary = "레시피 등록")
     @PostMapping
     public ResponseEntity<RecipeRegisterResponse> Register(@PathVariable Long restaurantId, @RequestBody RecipeRegisterRequest request) {
-        RecipeRegisterResponse response = recipeService.register(request.recipeName(), request.recipeDetail(), restaurantId);
+        RecipeRegisterResponse response = recipeService.register(request.recipeName(), request.recipeDetail(), restaurantId,request.recipeIngredient());
         return ResponseEntity.ok(response);
     }
 
@@ -41,9 +41,10 @@ public class RecipeController {
     }
 
     @Operation(summary = "레시피 삭제")
-    @DeleteMapping("/recipeId")
+    @DeleteMapping("/{recipeId}")
     public ResponseEntity<Void> deleteRecipe(@PathVariable Long restaurantId, @PathVariable Long recipeId) {
         recipeService.deleteRecipe(recipeId);
         return ResponseEntity.noContent().build();
     }
+
 }
