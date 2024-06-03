@@ -79,6 +79,17 @@ public class Member {
         }
     }
 
+    public void updateInfo(Double height, Double firstWeight, Double weight, Double targetWeight, Double muscleMass, Double weightLoss,
+                           Integer characterProfileId) {
+        this.height = height;
+        this.firstWeight = firstWeight;
+        this.weight = weight;
+        this.targetWeight = targetWeight;
+        this.muscleMass = muscleMass;
+        this.weightLoss = weightLoss;
+        this.characterProfileId = characterProfileId;
+    }
+
     public Long getId() {
         return id;
     }

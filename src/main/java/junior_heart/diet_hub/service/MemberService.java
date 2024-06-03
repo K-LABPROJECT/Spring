@@ -1,5 +1,6 @@
 package junior_heart.diet_hub.service;
 
+import junior_heart.diet_hub.controller.dto.MemberInfoUpdateRequest;
 import junior_heart.diet_hub.controller.dto.MemberSignRequest;
 import junior_heart.diet_hub.domain.Member;
 import junior_heart.diet_hub.domain.Restaurant;
@@ -42,5 +43,18 @@ public class MemberService {
         Member member = memberRepository.findById(memberId)
                                         .orElseThrow(() -> new IllegalArgumentException("해당 memberId 회원이 존재하지 않습니다. memberId={}" + memberId));
         return MemberInfoResponse.from(member);
+    }
+
+    @Transactional
+    public void updateInfo(Long memberId, MemberInfoUpdateRequest request) {
+        Member member = memberRepository.findById(memberId)
+                                        .orElseThrow(() -> new IllegalArgumentException("해당 memberId 회원이 존재하지 않습니다. memberId={}" + memberId));
+        member.updateInfo(request.height(),
+                          request.firstWeight(),
+                          request.weight(),
+                          request.targetWeight(),
+                          request.muscleMass(),
+                          request.weightLoss(),
+                          request.characterProfileId());
     }
 }
