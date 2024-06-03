@@ -41,17 +41,6 @@ public class MemberService {
     public MemberInfoResponse findInfo(Long memberId) {
         Member member = memberRepository.findById(memberId)
                                         .orElseThrow(() -> new IllegalArgumentException("해당 memberId 회원이 존재하지 않습니다. memberId={}" + memberId));
-        return new MemberInfoResponse(
-                member.getUsername(),
-                member.getHeight(),
-                member.getFirstWeight(),
-                member.getWeight(),
-                member.getMuscleMass(),
-                member.getTargetWeight(),
-                member.getWeightLoss(),
-                member.getFollowers(),
-                member.getFollowing(),
-                member.getCharacterProfileId()
-        );
+        return MemberInfoResponse.from(member);
     }
 }
