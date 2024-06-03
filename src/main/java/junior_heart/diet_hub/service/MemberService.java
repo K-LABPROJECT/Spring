@@ -26,9 +26,12 @@ public class MemberService {
         Member member = memberRepository.save(new Member(
                 request.username(),
                 request.height(),
+                request.firstWeight(),
                 request.weight(),
+                request.targetWeight(),
                 request.muscleMass(),
-                request.weightLoss()
+                request.weightLoss(),
+                request.characterProfileId()
         ));
         restaurantRepository.save(new Restaurant(request.username() + "가게", member.getId()));
         return new MemberSignResponse(member.getId());
@@ -41,9 +44,14 @@ public class MemberService {
         return new MemberInfoResponse(
                 member.getUsername(),
                 member.getHeight(),
+                member.getFirstWeight(),
                 member.getWeight(),
                 member.getMuscleMass(),
-                member.getWeightLoss()
+                member.getTargetWeight(),
+                member.getWeightLoss(),
+                member.getFollowers(),
+                member.getFollowing(),
+                member.getCharacterProfileId()
         );
     }
 }
